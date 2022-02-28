@@ -12,7 +12,7 @@ import com.javaproject.springboot.design.BookStack;
 @Repository
 public interface StackRepository extends JpaRepository<BookStack, Integer> {
 
-    @Query(value = "select * from library_table "
-            + " where BookID like %:keyword% or Title like %:keyword% or Author like %:keyword%", nativeQuery = true)
+    @Query(value = "select * from librarydatabase.bookstack"
+            + " where bookID like %:keyword% or title like %:keyword% or author like %:keyword%", nativeQuery = true)
     List<BookStack> findByKeyword(@Param("keyword") String keyword);
 }

@@ -13,20 +13,21 @@ public class BookStack {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "bookID")
 	private int bookID;
-	@Column(name = "bookSubject")
+	@Column(name = "subject")
 	private String subject;
-	@Column(name = "bookTitle")
+	@Column(name = "title")
 	private String title;
-	@Column(name = "bookAuthor")
+	@Column(name = "author")
 	private String author;
-	@Column(name = "bookPublisher")
+	@Column(name = "publisher")
 	private String publisher;
-	@Column(name = "bookEdition")
+	@Column(name = "edition")
 	private String edition;
-	@Column(name = "bookPrice")
+	@Column(name = "price")
 	private double price;
-	@Column(name = "bookQuantity")
+	@Column(name = "quantity")
 	private int quantity;
 
 	public BookStack() {

@@ -27,15 +27,15 @@ public class ThymeleafController {
     public String addOP(Model model) {
         BookStack newBook = new BookStack();
         model.addAttribute("Book", newBook);
-        return "new_book";
+        return "newBook";
     }
 
-    @GetMapping(value = "/book/search")
+    @GetMapping(value = "/book/search_list")
     public String searchOP() {
         return "searchPage";
     }
 
-    @GetMapping(value = "/searchBook")
+    @GetMapping(value = "/book/search")
     public String searchBook(Model model, String keyword) {
         if (keyword != null) {
             model.addAttribute("FoundBook", libService.getByKeyword(keyword));
@@ -45,20 +45,21 @@ public class ThymeleafController {
         return "searchPage";
     }
 
+    @SuppressWarnings("null")
     @PostMapping(value = "/book/store")
     public String storeBook(@ModelAttribute("BookStack") BookStack book) {
         libService.insertBook(book);
         return "redirect:/";
     }
 
-    @GetMapping("/book/update/{bookId}")
+    @GetMapping("/book/update/{book_ID}")
     public String updateOP(@PathVariable int id, Model model) {
         BookStack book = libService.getId(id);
         model.addAttribute("Updatedbook", book);
         return "update_book";
     }
 
-    @GetMapping("/book/delete/{id}")
+    @GetMapping("/book/delete/{book_ID}")
     public String deleteBook(@PathVariable(value = "booKID") int id) {
         this.libService.removeBook(id);
         return "redirect:/";
