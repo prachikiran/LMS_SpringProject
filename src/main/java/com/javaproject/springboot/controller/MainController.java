@@ -1,10 +1,8 @@
 package com.javaproject.springboot.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,7 +19,7 @@ import com.javaproject.springboot.services.ServiceClass;
 import java.util.List;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/library")
 public class MainController {
 
     @Autowired
@@ -34,26 +32,30 @@ public class MainController {
         return new ResponseEntity<List<BookStack>>(bookList, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/book/insert")
-    public BookStack insertBook(@ModelAttribute("Book") BookStack book) {
+    @PostMapping(value = "/book/insert")
+    public BookStack insertBook(@ModelAttribute("book") BookStack book) {
         libService.insertBook(book);
-        System.out.print("Inserted successfully!");
+        return book;
+    }
+
+    @GetMapping(value = "/book/{id}")
+    public BookStack getBookByID(@PathVariable("id") int bookID) {
+        BookStack book = libService.getId(bookID);
         return book;
     }
 
     @PutMapping(value = "/book/update")
     public BookStack updateBook(@ModelAttribute("Book") BookStack book) {
-        libService.insertBook(book);
-        System.out.print("Updated Library!");
+        libService.updateBook(book);
         return book;
     }
 
     @DeleteMapping("/book/delete")
     public String deleteBook(@RequestParam int bookID) {
         BookStack book = libService.getId(bookID);
-        String bookName = book.getTitle();
+        String bookTitle = book.getTitle();
         libService.removeBook(bookID);
 
-        return "Book #" + bookID + " " + bookName + " is successfully removed from the Library";
+        return "Book #" + bookID + " " + bookTitle + " is successfully removed from the Library";
     }
 }

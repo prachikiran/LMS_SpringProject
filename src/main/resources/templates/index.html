@@ -12,8 +12,7 @@
 	<div align="left">
 		<h1>Library Operation</h1>
 		<div align=right sec:authorize="isAuthenticated()">
-			Welcome to Digital Library <b><span sec:authentication="name">Username</span></b>
-			&nbsp;
+			Welcome <b><span sec:authentication="name">Username</span></b> &nbsp;
 			<form th:action="@{/logout}" method="post">
 				<input style="position: right" type="submit" value="Logout" />
 			</form>

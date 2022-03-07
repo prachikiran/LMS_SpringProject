@@ -10,9 +10,10 @@
 </head>
 <body>
 	<div class="container">
-		<h1 align=center>Library Management System</h1>
+		<h1 align=center style="color: black; text-decoration-style: wavy;"">Digital
+			Library Management System</h1>
 		<hr>
-		<h2>Insert Book</h2>
+		<h2>Add New Book</h2>
 		<form action="#" th:action="@{/book/insert}" th:object="${book}"
 			method="POST">
 			BookID <input type="text" th:field="*{bookID}" placeholder="Book ID"
@@ -32,7 +33,7 @@
 				type="text" th:field="*{quantity}" placeholder="Quantity"
 				class="form-control mb-4 col-4" /><br>
 
-			<button type="submit" class="btn btn-info col-2">Insert a Book</button>
+			<button type="submit" class="btn btn-info col-2">Insert</button>
 		</form>
 		<hr>
 		<a th:href="@{/}">Back to Library</a>
